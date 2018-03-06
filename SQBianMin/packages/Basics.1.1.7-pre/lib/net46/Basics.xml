@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Basics</name>
+    </assembly>
+    <members>
+        <member name="T:Basics.Containers.IContainer">
+            <summary>
+                Abstraction for a dependency injection container.
+            </summary>
+        </member>
+        <member name="P:Basics.Containers.IContainer.NativeContainer">
+            <summary>
+                Reference to the underlying DI framework's container instance.
+                It is recommended not to use this property as it breaks the framework-independent nature of this system.
+            </summary>
+        </member>
+        <member name="M:Basics.Containers.IContainer.CreateScope(System.Object)">
+            <summary>
+                Creates a (optionally named) nested container scope from the current container instance.
+            </summary>
+            <param name="tag">The name of the scoped container.</param>
+            <returns>The nested <see cref="T:Basics.Containers.IContainer" /> scope.</returns>
+        </member>
+        <member name="M:Basics.Containers.IContainer.Resolve(System.Type,System.String)">
+            <summary>
+                Resolves an object of the specified type and optionally the specified key.
+            </summary>
+            <param name="type">The type of object to resolve.</param>
+            <param name="key">Optional key under which the type is registered.</param>
+            <returns>The resolved object.</returns>
+            <exception cref="T:Basics.Containers.ContainerException">
+                Thrown if the type cannot be resolved. Typically, the inner exception will be the
+                actual exception thrown by the underlying DI framework.
+            </exception>
+        </member>
+        <member name="M:Basics.Containers.IContainer.ResolveOptional(System.Type,System.String)">
+            <summary>
+                Resolves an object of the specified type and optionally the specified key. If the object cannot be resolved, no
+                exception is thrown.
+            </summary>
+            <param name="type">The type of object to resolve.</param>
+            <param name="key">Optional key under which the type is registered.</param>
+            <returns>The resolved object or null if it cannot be resolved.</returns>
+        </member>
+        <member name="M:Basics.Containers.IContainerBuilder.Build">
+            <summary>
+                Creates a new dependency injection container with the registrations that have already
+                been made.
+            </summary>
+            <returns>A new container with the configured service registrations.</returns>
+        </member>
+        <member name="T:Basics.Containers.Ioc">
+            <summary>
+                Provides methods to create a container builder from configuration and to initialize a builder with default
+                registrations.
+            </summary>
+        </member>
+        <member name="P:Basics.Containers.Ioc.Container">
+            <summary>
+                Global access to the dependency injection container from within this assembly.
+            </summary>
+        </member>
+        <member name="M:Basics.Containers.Ioc.CreateBuilder">
+            <summary>
+                Creates an instance of the container builder from configuration and initializes it with the default registrations.
+            </summary>
+            <returns>The instance of the container builder.</returns>
+        </member>
+        <member name="M:Basics.Containers.Ioc.InitializeBuilder(Basics.Containers.IContainerBuilder)">
+            <summary>
+                Initializes the given container builder with the default registrations, all of which are specified in
+                configuration.
+            </summary>
+            <param name="builder">The container builder to initialize.</param>
+        </member>
+        <member name="M:Basics.Containers.Ioc.CreateContainer(Basics.Containers.IContainerBuilder)">
+            <summary>
+                Builds a container from the specified container builder instance.
+            </summary>
+            <param name="builder">The container builder.</param>
+            <returns>The container built from the container builder.</returns>
+        </member>
+        <member name="T:Basics.Containers.IKeyed`1">
+            <summary>
+                Denotes a named dependency
+            </summary>
+            <typeparam name="TContract">The contract of the dependency.</typeparam>
+        </member>
+        <member name="T:Basics.Containers.IOptional`1">
+            <summary>
+                Denotes an optional injected dependency.
+            </summary>
+            <typeparam name="TContract">The type that the dependency resolves to.</typeparam>
+        </member>
+        <member name="M:Basics.Containers.IOptional`1.Resolve(System.String)">
+            <summary>
+                Resolves the optional dependency with the specified key.
+            </summary>
+            <param name="key">The key of the dependency.</param>
+            <returns>An instance of the dependency or null if not registered.</returns>
+        </member>
+        <member name="M:Basics.Containers.OptionalExtensions.Resolve``1(Basics.Containers.IOptional{``0})">
+            <summary>
+                Extends the <see cref="M:Basics.Containers.IOptional`1.Resolve(System.String)" /> method by resolving the default dependency (without key).
+            </summary>
+            <typeparam name="TContract">The type of the dependency.</typeparam>
+            <param name="optional">The instance of <see cref="T:Basics.Containers.IOptional`1" /> to extend.</param>
+            <returns>An instance of the dependency or null if not registered.</returns>
+        </member>
+        <member name="T:Basics.Models.BatchOperationResults`2">
+            <summary>
+                Represents the result of a batch operation where some items in the batch could be successful and others could fail.
+            </summary>
+            <typeparam name="TSuccessModel">
+                The model to return for successful operations. Typically the same model passed as input
+                to the batch operation.
+            </typeparam>
+            <typeparam name="TFailureModel">The model to return for failed operations.</typeparam>
+        </member>
+        <member name="P:Basics.Models.BatchOperationResults`2.Successes">
+            <summary>
+                Gets the collection of models whose operations were successful.
+            </summary>
+        </member>
+        <member name="P:Basics.Models.BatchOperationResults`2.Failures">
+            <summary>
+                Gets the collection of models whose operations failed. Each item is wrapped in a BatchOperationError object, which
+                also specifies the error object.
+            </summary>
+        </member>
+        <member name="M:Basics.Models.BatchOperationResults`2.IsSuccessful">
+            <summary>
+                Returns whether all operations were successful. This property returns true even if there were no operations.
+            </summary>
+        </member>
+        <member name="M:Basics.Models.BatchOperationResults`2.HasFailed">
+            <summary>
+                Returns whether all operations failed.
+            </summary>
+        </member>
+        <member name="M:Basics.Models.BatchOperationResults`2.HasMixedResults">
+            <summary>
+                Returns whether some operations succeeded and some failed.
+            </summary>
+        </member>
+        <member name="T:Basics.Models.BatchOperationResults`1">
+            <summary>
+                Represents a batch operation result where both the success and failure models are of the same type.
+            </summary>
+            <typeparam name="T">The model type representing success and failure.</typeparam>
+        </member>
+        <member name="M:Basics.Models.BatchOperationExtensions.RunBatch``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+                Runs a batch operation over a collection of items, captures any errors and returns a
+                <see cref="T:Basics.Models.BatchOperationResults`2" /> result.
+            </summary>
+            <typeparam name="TModel">Data type of the items to iterate through.</typeparam>
+            <typeparam name="TResults">Type of the <see cref="T:Basics.Models.BatchOperationResults`2" /> object.</typeparam>
+            <param name="source">Collection of items to iterate through.</param>
+            <param name="action">Delegate that defines the operation to run on each item.</param>
+            <returns>
+                A <see cref="T:Basics.Models.BatchOperationResults`2" /> instance that contains the results from
+                batch run.
+            </returns>
+        </member>
+        <member name="M:Basics.Models.BatchOperationExtensions.RunBatch``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task{System.Boolean}})">
+            <summary>
+                Runs a batch operation over a collection of items, captures any errors and returns a
+                <see cref="T:Basics.Models.BatchOperationResults`2" /> result.
+            </summary>
+            <typeparam name="TModel">Data type of the items to iterate through.</typeparam>
+            <typeparam name="TResults">Type of the <see cref="T:Basics.Models.BatchOperationResults`2" /> object.</typeparam>
+            <param name="source">Collection of items to iterate through.</param>
+            <param name="action">Delegate that defines the operation to run on each item.</param>
+            <returns>
+                A <see cref="T:Basics.Models.BatchOperationResults`2" /> instance that contains the results from
+                batch run.
+            </returns>
+        </member>
+        <member name="T:Basics.Models.DomainModel`1">
+            <summary>
+                Typical base class for any domain model.
+                The only assumption here is that the unique identifier is named 'Id'.
+            </summary>
+            <typeparam name="TId">The type of the unique identifier.</typeparam>
+        </member>
+        <member name="T:Basics.Models.SearchCriteria">
+            <summary>
+                Base search criteria class that supports only pagination.
+            </summary>
+        </member>
+        <member name="P:Basics.Models.SearchCriteria.StartRecord">
+            <summary>
+                Zero-based index of the starting record to retrieve. Defaults to 0 if not specified.
+            </summary>
+        </member>
+        <member name="P:Basics.Models.SearchCriteria.RecordCount">
+            <summary>
+                Number of records to retrieve. Retrieves all records if not specified.
+            </summary>
+        </member>
+        <member name="M:Basics.Models.SearchCriteria.RequiresPagination">
+            <summary>
+                Returns whether the search criteria specifies pagination criteria.
+            </summary>
+            <remarks>
+                This member is a method and not a property, to avoid unnecessarily serializing it. While we can use
+                specialized attributes to avoid serialization, those are framework-specific, and by making it a method, we get all
+                the same benefits without having to select a specific serialization framework to handle.
+            </remarks>
+        </member>
+        <member name="T:Basics.Models.SearchCriteria`1">
+            <summary>
+                Base search criteria class that supports sorting, in addition to pagination.
+            </summary>
+            <typeparam name="TSortField">Enum representing the fields that can be sorted.</typeparam>
+        </member>
+        <member name="M:Basics.Models.SearchCriteria`2.RequiresFiltering">
+            <summary>
+                Returns whether the search criteria specifies filtering criteria.
+            </summary>
+        </member>
+        <member name="P:Basics.Models.SearchResults`1.Data">
+            <summary>
+                Data records returned from the search query.
+            </summary>
+        </member>
+        <member name="P:Basics.Models.SearchResults`1.TotalCount">
+            <summary>
+                Total number of records returned from the search query. This is normally the same as the number of items in the
+                Data property, unless pagination criteria is applied.
+            </summary>
+        </member>
+        <member name="T:Basics.Models.SortSpec`1">
+            <summary>
+                Represents a field sorting specification, which includes the field to sort by and the sort direction.
+            </summary>
+            <typeparam name="TSortField">The enum that specifies the sortable fields.</typeparam>
+        </member>
+        <member name="M:Basics.SecurityExtensions.AddPermissions(System.Security.Claims.ClaimsIdentity,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Adds one or more permission claims to the given identity.
+            </summary>
+            <param name="identity">The <see cref="T:System.Security.Claims.ClaimsIdentity"/> instance to add the permission claims to.</param>
+            <param name="permissions">The permissions to add.</param>
+            <returns>Instance of the permissions claim</returns>
+        </member>
+    </members>
+</doc>
