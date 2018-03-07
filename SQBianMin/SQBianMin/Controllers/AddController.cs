@@ -7,38 +7,47 @@ using System.Web.Mvc;
 
 namespace SQBianMin.Controllers
 {
-    public class AddController : Controller
+    public class AddController : BaseController
     {
         // GET: Add
-        public ActionResult Index()
+        public ActionResult Index(int id=0)
         {
-            return View();
+            BianMinModel model = new BianMinModel();
+            if (id > 0)
+            {
+                model = _bianMinService.GetBianMinModel(id);
+            }
+            return View(model);
         }
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Index(BianMinModel m)
         {
 
-            
+            if (m.Id > 0)//修改
+            {
+                if (_bianMinService.UpdateBianMinModel(m))
+                {
+                    return Json(new { code = 0, msg = "修改成功" });
+                }
+                else
+                {
+                    return Json(new { code = 1, msg = "修改失败" });
+                }
 
-            if (type == "支出")
-            {
-                outdal.Add(new Model.Outlay() { createdate = DateTime.Now, accid = accid, caid = caid, oDate = createtime, oDesc = remark, oMoney = money, });
-                acc.balance -= money;
-                accdal.Update(acc);
-                return Json(new { code = 0, msg = "添加支出成功" });
             }
-            else if (type == "收入")
+            else//新增
             {
-                incdal.Add(new Model.Income() { createdate = DateTime.Now, accid = accid, caid = caid, iDate = createtime, iDesc = remark, iMoney = money });
-                acc.balance += money;
-                accdal.Update(acc);
-                return Json(new { code = 0, msg = "添加收入成功" });
+                if (_bianMinService.AddBianMinModel(m))
+                {
+                    return Json(new { code = 0, msg = "添加成功" });
+                }
+                else
+                {
+                    return Json(new { code = 1, msg = "添加失败" });
+                }
             }
-            else
-            {
-                return Json(new { code = 1, msg = "未知类型" });
-            }
+
         }
     }
 }

@@ -1,114 +1,67 @@
 ﻿@{
     ViewData["Title"] = "添加";
 }
+@model SQBianMin.Models.BianMinModel
 
+    <form class="layui-form" action="">
+        <div class='formtitle'><span>@ViewData["Title"]</span></div>
 
-<div class="row">
-    <div class="col-md-12">
-
-        <form class="layui-form" action="">
-            <div class='formtitle'><span>@ViewData["Title"]</span></div>
-            <div class='layui-form'>
-                <div class='layui-form-item'>
-                    <label class='layui-form-label'>头像</label>
-                    <div class='layui-input-inline'>
-                        <input name="HeadImg" type="text" class="layui-input" lay-verify="required" />
-                    </div>
-                    <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
-                </div>
-                <div class='layui-form-item'>
-                    <label class='layui-form-label'>昵称</label>
-                    <div class='layui-input-inline'>
-                        <input name="NickName" type="text" class="layui-input" lay-verify="required" />
-                    </div>
-                    <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
-                </div>
-                <div class='layui-form-item'>
-                    <label class='layui-form-label'>分类</label>
-                    <div class='layui-input-inline'>
-                        <select name="CategoryId">
-                            <option value="0">其他</option>
-                            <option value="1">招聘</option>
-                            <option value="2">二手交易</option>
-                            <option value="3">兼职</option>
-                        </select>
-                    </div>
-                    <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
-                </div>
-
-               
-                <div class='layui-form-item'>
-                    <label class='layui-form-label'>内容</label>
-                    <div class='layui-input-inline'>
-                        <textarea class="layui-textarea" name="Content"></textarea>
-                    </div>
-                    <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
-                </div>
-                <div class='layui-form-item'>
-                    <label class='layui-form-label'>联系号码</label>
-                    <div class='layui-input-inline'>
-                        <input name="ContactNum" type="text" class="layui-input" lay-verify="required" />
-                    </div>
-                    <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
-                </div>
-                <div class='layui-form-item'>
-                    <label class='layui-form-label'>联系人</label>
-                    <div class='layui-input-inline'>
-                        <input name="ContactName" type="text" class="layui-input" lay-verify="required" />
-                    </div>
-                    <div class='layui-form-mid layui-word-aux'><!--辅助文字--></div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit="" lay-filter="demo1">@ViewData["Title"]</button>
-                        @Html.AntiForgeryToken()
-                    </div>
-                </div>
+        <div class='layui-form-item layui-col-xs6'>
+            <label class='layui-form-label'>头像</label>
+            <div class='layui-input-block '>
+                <input name="HeadImg" type="text" class="layui-input " value="" lay-verify="required" />
             </div>
+        </div>
+        <div class='layui-form-item layui-col-xs6'>
+            <label class='layui-form-label'>昵称</label>
+            <div class='layui-input-block'>
+                <input name="NickName" type="text" class="layui-input" lay-verify="required" />
+            </div>
+        </div>
+        <div class='layui-form-item layui-col-xs6'>
+            <label class='layui-form-label'>分类</label>
+            <div class='layui-input-block'>
+                <select name="CategoryId">
+                    <option value="0">其他</option>
+                    <option value="1">招聘</option>
+                    <option value="2">二手交易</option>
+                    <option value="3">兼职</option>
+                </select>
+            </div>
+        </div>
 
-        </form>
+
+        <div class='layui-form-item layui-col-xs6'>
+            <label class='layui-form-label'>内容</label>
+            <div class='layui-input-block'>
+                <textarea class="layui-textarea" name="Content" lay-verify="required"></textarea>
+            </div>
+        </div>
+        <div class='layui-form-item layui-col-xs6'>
+            <label class='layui-form-label'>联系号码</label>
+            <div class='layui-input-block'>
+                <input name="ContactNum" type="text" class="layui-input"  />
+            </div>
+        </div>
+        <div class='layui-form-item layui-col-xs6'>
+            <label class='layui-form-label'>联系人</label>
+            <div class='layui-input-block'>
+                <input name="ContactName" type="text" class="layui-input"  />
+            </div>
+        </div>
+        <div class="layui-form-item layui-col-xs6">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">@ViewData["Title"]</button>
+                @Html.AntiForgeryToken()
+            </div>
+        </div>
 
 
-        @*<div class='formtitle'><span>本日收支</span></div>
-        <table class="layui-table">
-            <thead>
-                <tr>
-                    <th>时间</th>
-                    <th>类型</th>
-                    <th>分类</th>
-                    <th>账户</th>
-                    <th>备注</th>
-                    <th>金额</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Niunan.NetCore.Charge.Model.Outlay item in ViewBag.outlay)
-                {
-                    <tr>
-                        <td>@item.oDate.ToString("yyyy-MM-dd")</td>
-                        <td>支出</td>
-                        <td>@( cadal.GetOneFiled("caname", "id=" + item.caid))</td>
-                        <td>@( accdal.GetOneFiled("accname", "id=" + item.accid) )</td>
-                        <td>@item.oDesc</td>
-                        <td>@item.oMoney</td>
-                    </tr>
-                }
-                @foreach (Niunan.NetCore.Charge.Model.Income item in ViewBag.income)
-                {
-                    <tr>
-                        <td>@item.iDate.ToString("yyyy-MM-dd")</td>
-                        <td>收入</td>
-                        <td>@( cadal.GetOneFiled("caname", "id=" + item.caid))</td>
-                        <td>@( accdal.GetOneFiled("accname", "id=" + item.accid) )</td>
-                        <td>@item.iDesc</td>
-                        <td>@item.iMoney</td>
-                    </tr>
-                }
-            </tbody>
-        </table>*@
+    </form>
 
-    </div>
-</div>
+
+       
+
 @section Scripts{
 
     <script>
@@ -153,7 +106,7 @@
                 console.log(url + "?" + JSON.stringify(postdata));
                 $.post(url, postdata, function (data) {
                     if (data.code == 0) {
-                        layer.alert(data.msg, function () { location.href = "/Add/"; })
+                        layer.alert(data.msg, function () { location.href = "/Home/"; })
                     } else {
                         layer.alert(data.msg);
                     }

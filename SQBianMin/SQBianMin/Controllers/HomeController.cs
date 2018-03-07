@@ -5,13 +5,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SQBianMin.Models;
-using SQBianMin.Services;
 
 namespace SQBianMin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        BianMinService _bianMinService = new BianMinService();
+        
 
         public ActionResult Index()
         {
