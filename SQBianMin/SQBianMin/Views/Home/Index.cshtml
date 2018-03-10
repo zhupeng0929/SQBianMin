@@ -63,6 +63,7 @@
                         <th>内容</th>
                         <th>联系号码</th>
                         <th>联系人</th>
+                        <th>添加时间</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -156,7 +157,7 @@
                     html += '    <td>' + item.Content + '</td>';
                     html += '    <td>' + item.ContactNum + '</td>';
                     html += '    <td>' + item.ContactName + '</td>';
-
+                    html += '    <td>' + item.CreateDate + '</td>';
                     html += '    <td>';
                     html += '        <a href="/Add/index/' + item.Id + '"><i class="layui-icon">&#xe642;</i> 编辑</a>';
                     html += '        <a href="javascript:void(0);" onclick="del(' + item.Id + ')"><i class="layui-icon">&#x1006;</i> 删除</a>';
