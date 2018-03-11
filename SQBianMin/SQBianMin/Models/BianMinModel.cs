@@ -16,11 +16,11 @@ namespace SQBianMin.Models
         private int _id = 0;
         private string _nickName = String.Empty;
         private string _headImg = String.Empty;
-        private byte _categoryId = 0;
+        private int _categoryId = 0;
         private string _content = String.Empty;
         private string _contactNum = String.Empty;
         private string _contactName = String.Empty;
-
+        private DateTime _createDate = DateTime.Parse("1900-1-1");
 
         /// <summary>
         /// 主键
@@ -57,7 +57,7 @@ namespace SQBianMin.Models
         /// 分类
         /// </summary>
         [Description("分类")]
-        public byte CategoryId
+        public int CategoryId
         {
             get { return _categoryId; }
             set { _categoryId = value; }
@@ -101,6 +101,18 @@ namespace SQBianMin.Models
         {
             get { return _contactName; }
             set { _contactName = value; }
+        }
+
+        /// <summary>
+        /// 添加时间
+        /// </summary>
+        [Description("添加时间")]
+        [IgnoreUpdate]
+        [IgnoreInsert]
+        public DateTime CreateDate
+        {
+            get { return _createDate; }
+            set { _createDate = value; }
         }
 
 

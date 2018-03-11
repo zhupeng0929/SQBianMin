@@ -1,66 +1,72 @@
 ﻿@{
     ViewData["Title"] = "添加";
 }
+@using SQBianMin.Models
+@using SQBianMin.Utility
 @model SQBianMin.Models.BianMinModel
 
-    <form class="layui-form" action="">
-        <div class='formtitle'><span>@ViewData["Title"]</span></div>
-
-        <div class='layui-form-item layui-col-xs6'>
-            <label class='layui-form-label'>头像</label>
-            <div class='layui-input-block '>
-                <input name="HeadImg" type="text" class="layui-input " value="" lay-verify="required" />
-            </div>
+<form class="layui-form" action="">
+    <div class='formtitle'><span>@ViewData["Title"]</span></div>
+    @Html.HiddenFor(Model=>Model.Id)
+    <div class='layui-form-item layui-col-xs6'>
+        <label class='layui-form-label'>头像</label>
+        <div class='layui-input-block '>
+            <input name="HeadImg" type="text" class="layui-input " value="@Model.HeadImg" lay-verify="required" />
         </div>
-        <div class='layui-form-item layui-col-xs6'>
-            <label class='layui-form-label'>昵称</label>
-            <div class='layui-input-block'>
-                <input name="NickName" type="text" class="layui-input" lay-verify="required" />
-            </div>
+    </div>
+    <div class='layui-form-item layui-col-xs6'>
+        <label class='layui-form-label'>昵称</label>
+        <div class='layui-input-block'>
+            <input name="NickName" type="text" class="layui-input" value="@Model.NickName" lay-verify="required" />
         </div>
-        <div class='layui-form-item layui-col-xs6'>
-            <label class='layui-form-label'>分类</label>
-            <div class='layui-input-block'>
-                <select name="CategoryId">
+    </div>
+    <div class='layui-form-item layui-col-xs6'>
+        <label class='layui-form-label'>分类</label>
+        <div class='layui-input-block'>
+            @Html.DropDownListFor(Model => Model.CategoryId, EnumTypeHelper.SelectListEnum<EnumModel.Category>())
+            @*<select name="CategoryId">
                     <option value="0">其他</option>
                     <option value="1">招聘</option>
                     <option value="2">二手交易</option>
                     <option value="3">兼职</option>
-                </select>
-            </div>
+                </select>*@
         </div>
+    </div>
 
 
-        <div class='layui-form-item layui-col-xs6'>
-            <label class='layui-form-label'>内容</label>
-            <div class='layui-input-block'>
-                <textarea class="layui-textarea" name="Content" lay-verify="required"></textarea>
-            </div>
+    <div class='layui-form-item layui-col-xs6'>
+        <label class='layui-form-label'>内容</label>
+        <div class='layui-input-block'>
+            @*<textarea class="layui-textarea" name="Content"  lay-verify="required"></textarea>*@
+            @Html.TextAreaFor(Model => Model.Content, new { @class = "layui-textarea", lay_verify = "required" })
         </div>
-        <div class='layui-form-item layui-col-xs6'>
-            <label class='layui-form-label'>联系号码</label>
-            <div class='layui-input-block'>
-                <input name="ContactNum" type="text" class="layui-input"  />
-            </div>
+    </div>
+    <div class='layui-form-item layui-col-xs6'>
+        <label class='layui-form-label'>联系号码</label>
+        <div class='layui-input-block'>
+            @*<input name="ContactNum" type="text" class="layui-input" />*@
+            @Html.TextBoxFor(Model => Model.ContactNum, new { @class = "layui-input" })
         </div>
-        <div class='layui-form-item layui-col-xs6'>
-            <label class='layui-form-label'>联系人</label>
-            <div class='layui-input-block'>
-                <input name="ContactName" type="text" class="layui-input"  />
-            </div>
+    </div>
+    <div class='layui-form-item layui-col-xs6'>
+        <label class='layui-form-label'>联系人</label>
+        <div class='layui-input-block'>
+            @*<input name="ContactName" type="text" class="layui-input" />*@
+            @Html.TextBoxFor(Model => Model.ContactName, new { @class = "layui-input" })
         </div>
-        <div class="layui-form-item layui-col-xs6">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="demo1">@ViewData["Title"]</button>
-                @Html.AntiForgeryToken()
-            </div>
+    </div>
+    <div class="layui-form-item layui-col-xs6">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">@ViewData["Title"]</button>
+            @Html.AntiForgeryToken()
         </div>
+    </div>
 
 
-    </form>
+</form>
 
 
-       
+
 
 @section Scripts{
 

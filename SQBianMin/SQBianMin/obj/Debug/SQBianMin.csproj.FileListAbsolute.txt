@@ -57,7 +57,6 @@ c:\users\zp\documents\visual studio 2017\Projects\SQBianMin\SQBianMin\bin\Dapper
 c:\users\zp\documents\visual studio 2017\Projects\SQBianMin\SQBianMin\bin\Dapper.SimpleCRUD.pdb
 c:\users\zp\documents\visual studio 2017\Projects\SQBianMin\SQBianMin\bin\Dapper.SimpleCRUD.xml
 c:\users\zp\documents\visual studio 2017\Projects\SQBianMin\SQBianMin\bin\NodaTime.xml
-E:\Git\SQBianMin\SQBianMin\SQBianMin\obj\Debug\SQBianMin.csprojResolveAssemblyReference.cache
 E:\Git\SQBianMin\SQBianMin\SQBianMin\obj\Debug\SQBianMin.csproj.CoreCompileInputs.cache
 E:\Git\SQBianMin\SQBianMin\SQBianMin\obj\Debug\SQBianMin.dll
 E:\Git\SQBianMin\SQBianMin\SQBianMin\obj\Debug\SQBianMin.pdb
@@ -116,3 +115,10 @@ E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\zh-Hans\System.Web.Razor.resources.dll
 E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\zh-Hans\System.Web.WebPages.resources.dll
 E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\System.Net.Http.Formatting.dll
+E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\System.Web.Http.dll
+E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\System.Web.Http.WebHost.dll
+E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\System.Net.Http.Formatting.xml
+E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\System.Web.Http.xml
+E:\Git\SQBianMin\SQBianMin\SQBianMin\bin\System.Web.Http.WebHost.xml
+E:\Git\SQBianMin\SQBianMin\SQBianMin\obj\Debug\SQBianMin.csprojResolveAssemblyReference.cache
