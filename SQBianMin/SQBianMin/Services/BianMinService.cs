@@ -129,7 +129,7 @@ namespace SQBianMin.Services
             var mResult = new List<BianMinModel>();
             using (IDbConnection conn = new SqlConnection(GetConnstr))
             {
-                mResult = conn.GetListPaged<BianMinModel>(page.PageNumber, page.PageSize, "", "").ToList();
+                mResult = conn.GetListPaged<BianMinModel>(page.PageNumber, page.PageSize, "", "Id desc").ToList();
             }
             return mResult;
         }

@@ -23,5 +23,12 @@ namespace SQBianMin.Controllers
 
             return list;
         }
+
+        [HttpPost]
+        public bool AddMessage(BianMinModel model)
+        {
+            model.CreateDate = DateTime.Now;
+            return _bianMinService.AddBianMinModel(model);
+        }
     }
 }
