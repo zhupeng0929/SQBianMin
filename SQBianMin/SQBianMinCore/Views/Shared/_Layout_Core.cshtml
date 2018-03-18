@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/layui/css/global.css" rel="stylesheet" />
+    <style>
+    </style>
+</head>
+<body>
+    <div class="fly-header layui-bg-black">
+        <div class="layui-container">
+
+            <ul class="layui-nav fly-nav layui-hide-xs">
+                <li class="layui-nav-item layui-this">
+                    <a href="/"><i class="iconfont icon-jiaoliu"></i>主页</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/Home/About"><i class="iconfont icon-iconmingxinganli"></i>关于</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/Home/Contact"><i class="iconfont icon-ui"></i>联系方式</a>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+    <div class="layui-container ">
+        <div class="layui-row layui-col-space15 fly-panel">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="fly-footer">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - 宿迁便民 QQ:651649026</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="~/Content/layui/layui.js"></script>
+    <style>
+        .formtitle {
+            border-bottom: solid 1px #d0dee5;
+            line-height: 35px;
+            position: relative;
+            height: 35px;
+            margin-bottom: 28px;
+        }
+
+            .formtitle span {
+                font-weight: bold;
+                font-size: 14px;
+                border-bottom: solid 3px #66c9f3;
+                float: left;
+                position: absolute;
+                z-index: 100;
+                bottom: -1px;
+                padding: 0 3px;
+                height: 30px;
+                line-height: 30px;
+            }
+
+
+    </style>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

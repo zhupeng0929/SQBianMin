@@ -1,106 +1,229 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "信息列表";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-
+<style>
+    select {
+        max-width: 150px;
+    }
+</style>
 <div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+    <div class="col-md-12">
+
+        @*<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">支出</li>
+                <li><a href="/Income">收入</a></li>
+            </ul>
+        </div>*@
+
+        <div style="padding:10px;">
+            <div class="layui-form">
+                <a class="layui-btn" href="/Add">
+                    <i class="layui-icon">&#xe608;</i> 添加
+                </a>
+                <div class="layui-input-inline">
+                    <input type="text" id="search_start" class="layui-input" placeholder="开始时间" onclick="layui.laydate({elem: this})" />
+                </div>
+                <div class="layui-input-inline">
+                    ~
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" id="search_end" class="layui-input" placeholder="结束时间" onclick="layui.laydate({elem: this})" />
+                </div>
+                <div class="layui-input-inline">
+                    <select id="search_ca">
+                        <option value="0">--所有分类--</option>
+                        @*@foreach (Niunan.NetCore.Charge.Model.Category item in ViewBag.calist)
+                            {
+                                <option value="@item.id">@item.caname</option>
+                            }*@
+
+                        <option value="1">测试1</option>
+                        <option value="2">测试2</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select id="search_acc">
+                        <option value="0">--所有账户--</option>
+
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <button class="layui-btn layui-btn-normal" type="button" onclick="search()"><i class="layui-icon">&#xe615;</i> 查询</button>
+                </div>
+
+            </div>
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <th>头像</th>
+                        <th>昵称</th>
+                        <th>分类</th>
+                        <th width="30%">内容</th>
+                        <th>联系号码</th>
+                        <th>联系人</th>
+                        <th>添加时间</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="main_data">
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <div style="float: left; line-height: 55px;margin: 0 15px; font-size: 16px;">
+                    当前共<span id="totalcount"></span>条记录，每页10条，第<span id="pageindex"></span>页/共<span id="pagecount"></span>页
+                </div>
+                <div id="pages">
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
+@section Scripts{
+
+    <script>
+    layui.use(['form',  'laydate'], function () {
+        var form = layui.form()
+            , laydate = layui.laydate;
+
+        //监听上否显示账户余额
+        form.on('switch(showacc)', function (data) {
+            var b = data.elem.checked; //开关是否开启，true或者false
+            if (b) {
+                $("#div_acc").show();
+            } else {
+                $("#div_acc").hide();
+            }
+        });
+
+    })
+
+
+
+
+    var pagesize = 10; //页大小
+    /*分页*/
+    layui.use(['laypage', 'layer'], function () {
+        var laypage = layui.laypage, layer = layui.layer, $ = layui.jquery;
+        var url = "/home/GetTotalCount?t=" + new Date().valueOf();
+        $.post(url, function (count) {
+
+            var pagecount = (count % pagesize == 0 ? count / pagesize : Math.ceil(count / pagesize)); //总页数
+            //  console.log("总记录数：" + count + "，总页数：" + pagecount);
+            $('#totalcount').text(count);
+            $('#pagecount').text(pagecount);
+
+            laypage({
+                cont: 'pages',
+                pages: pagecount, //得到总页数
+                jump: function (obj) {
+                    var pageindex = obj.curr;
+                    //layer.alert("点击了第" + pageindex + "页。");
+                    //读取后台数据数据返回JSON后拼接HTML
+                    load_blog_data(pageindex);
+                }
+            });
+
+        });
+
+    });
+    /*加载第X页数据*/
+    function load_blog_data(pageindex) {
+
+            $('#pageindex').text(pageindex);
+
+
+            var postdata = getcond();
+
+            var url = "/home/List?pageindex=" + pageindex + "&pagesize=" + pagesize;
+
+            $.post(url, postdata, function (json) {
+
+                var html = '';
+                $.each(json, function (i, item) {
+                    // console.log("第" + i + "个元素：");
+                    //  console.log(blog);
+                    html += '<tr>';
+                    html += '    <td><img src="' + item.HeadImg + '"style="width: 30px;" /></td>';
+                    html += '    <td>' + item.NickName + '</td>';
+                    html += '    <td>' + item.CategoryName + '</td>';
+                    html += '    <td>' + item.Content + '</td>';
+                    html += '    <td>' + item.ContactNum + '</td>';
+                    html += '    <td>' + item.ContactName + '</td>';
+                    html += '    <td>' + item.CreateDate + '</td>';
+                    html += '    <td>';
+                    html += '        <a href="/Add/index/' + item.Id + '"><i class="layui-icon">&#xe642;</i> 编辑</a>';
+                    html += '        <a href="javascript:void(0);" onclick="del(' + item.Id + ')"><i class="layui-icon">&#x1006;</i> 删除</a>';
+                    html += '    </td>';
+                    html += '</tr>';
+
+                })
+
+               // $('tbody').html(html); //原来是这个，但是这个以后日期框会错乱
+                $('#main_data').html(html);
+
+            }, 'json');
+
+
+
+    }
+
+
+    /*拼接条件返回postdata*/
+    function getcond() {
+
+        var start = document.getElementById('search_start').value;
+        var end = document.getElementById('search_end').value;
+        var caid = document.getElementById('search_ca').value;
+        var accid = document.getElementById('search_acc').value;
+        var postdata = { start: start, end: end, caid: caid, accid: accid };
+        return postdata;
+    }
+
+
+    /*查询*/
+    function search() {
+
+        layui.use(['laypage', 'layer', 'laydate'], function () {
+            var laypage = layui.laypage, layer = layui.layer,laydate=layui.laydate, $ = layui.jquery;
+
+
+            var postdata = getcond();
+
+            var url = "/home/GetTotalCount?t=" + new Date().valueOf();
+            console.log("查询：" + url + " " + JSON.stringify(postdata));
+            $.post(url, postdata, function (count) {
+
+                var pagecount = (count % pagesize == 0 ? count / pagesize : Math.ceil(count / pagesize)); //总页数
+                console.log("总记录数：" + count + "，总页数：" + pagecount);
+                $('#totalcount').text(count);
+                $('#pagecount').text(pagecount);
+
+                laypage({
+                    cont: 'pages',
+                    pages: pagecount, //得到总页数
+                    jump: function (obj) {
+                        var pageindex = obj.curr;
+                        //layer.alert("点击了第" + pageindex + "页。");
+                        //读取后台数据数据返回JSON后拼接HTML
+                        load_blog_data(pageindex);
+                    }
+                });
+
+            });
+
+        });
+
+    }
+
+
+    </script>
+
+}
