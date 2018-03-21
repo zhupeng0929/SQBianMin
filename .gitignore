@@ -37,3 +37,5 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 SQBianMin/packages
 *.dll
+SQBianMin/SQBianMin/obj/Debug/SQBianMin.dll
+SQBianMin/SQBianMin/obj/Debug/SQBianMin.pdb
