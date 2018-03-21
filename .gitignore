@@ -5,7 +5,8 @@ SQBianMin/SQBianMinCore/bin
 SQBianMin/SQBianMin/obj
 SQBianMin/SQBianMinCore/obj
 *.dll
-
+obj
+bin
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
